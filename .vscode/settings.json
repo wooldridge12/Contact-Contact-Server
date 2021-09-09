@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "bangazon",
+            "database": "db.sqlite3"
+        }
+    ],
+    "python.pythonPath": "/Users/michaelwooldridge/.local/share/virtualenvs/server-gALcJjDy/bin/python"
+}
