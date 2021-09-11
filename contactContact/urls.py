@@ -23,6 +23,5 @@ router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'posts', PostView, 'post')
 
 urlpatterns = [
-    path('', include(router.urls)),
-
+    path('', include(router.urls))
 ]

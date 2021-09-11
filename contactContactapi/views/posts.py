@@ -19,6 +19,21 @@ class PostView(ViewSet):
             posts, many=True, context={'request': request})
         return Response(serializer.data)
 
+    def create(self, request):
+
+        contact_user = ContactUser.objects.get(user=request.auth.user)
+
+        post = Post()
+        post.content = request.data["content"]
+        post.contact_user = contact_user
+
+        try:
+            post.save()
+            serializer = PostSerializer(post, context={'request': request})
+            return Response(serializer.data)
+        except ValidationError as ex:
+            return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
+
 
 class UserSerializer(serializers.ModelSerializer):
     """JSON serializer for users name"""
