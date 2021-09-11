@@ -1,0 +1,16 @@
+[
+    {
+        "model": "contactContactapi.urgency",
+        "pk": 1,
+        "fields": {
+            "label": "Question"
+        }
+    },
+    {
+        "model": "contactContactapi.urgency",
+        "pk": 2,
+        "fields": {
+            "label": "Danger"
+        }
+    }
+]

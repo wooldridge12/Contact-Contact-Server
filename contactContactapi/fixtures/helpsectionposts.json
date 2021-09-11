@@ -1,0 +1,24 @@
+[
+    {
+        "model": "contactContactapi.helpsectionpost",
+        "pk": 1,
+        "fields": {
+            "contact_user": 2,
+            "urg_button": 1,
+            "content": "Can I get some advice on VA paperwork?",
+            "phone_number": 5558887777,
+            "is_helped": false
+        }
+    },
+    {
+        "model": "contactContactapi.helpsectionpost",
+        "pk": 2,
+        "fields": {
+            "contact_user": 2,
+            "urg_button": 2,
+            "content": "Help please",
+            "phone_number": 5558887777,
+            "is_helped": false
+        }
+    }
+]

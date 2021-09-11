@@ -1,0 +1,10 @@
+[
+    {
+        "model": "contactContactapi.post",
+        "pk": 1,
+        "fields": {
+            "contact_user": 1,
+            "content": "A coding bootcamp is a great alternative to college for software. Checkout Nashville Software School!"
+        }
+    }
+]

@@ -3,7 +3,7 @@
         {
             "previewLimit": 50,
             "driver": "SQLite",
-            "name": "bangazon",
+            "name": "ContactContact",
             "database": "db.sqlite3"
         }
     ],
