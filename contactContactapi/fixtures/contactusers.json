@@ -1,0 +1,18 @@
+[
+    {
+        "model": "contactContactapi.contactuser",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "username": "Mikey"
+        }
+    },
+    {
+        "model": "contactContactapi.contactuser",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "username": "Nikki"
+        }
+    }
+]

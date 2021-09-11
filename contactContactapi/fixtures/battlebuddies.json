@@ -1,0 +1,10 @@
+[
+    {
+        "model": "contactContactapi.battlebuddy",
+        "pk": 1,
+        "fields": {
+            "contact_user": 1,
+            "active": true
+        }
+    }
+]
