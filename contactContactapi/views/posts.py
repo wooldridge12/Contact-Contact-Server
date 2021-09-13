@@ -44,7 +44,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ContactUserSerializer(serializers.ModelSerializer):
-    """HI"""
+    """"""
     user = UserSerializer(many=False)
 
     class Meta:
@@ -61,7 +61,7 @@ class PostSerializer(serializers.ModelSerializer):
     contact_user = ContactUserSerializer(many=False)
 
     class Meta:
-        """HI"""
+        """"""
         model = Post
         fields = ('id', 'content','contact_user')
         depth = 1

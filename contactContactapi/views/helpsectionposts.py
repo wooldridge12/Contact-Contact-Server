@@ -48,7 +48,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ContactUserSerializer(serializers.ModelSerializer):
-    """HI"""
+    """"""
     user = UserSerializer(many=False)
 
     class Meta:
@@ -65,7 +65,7 @@ class HelpSectionPostSerializer(serializers.ModelSerializer):
     contact_user = ContactUserSerializer(many=False)
 
     class Meta:
-        """HI"""
+        """"""
         model = HelpSectionPost
         fields = ('id', 'content','contact_user', 'urg_button', 'phone_number', 'is_helped' )
         depth = 1
