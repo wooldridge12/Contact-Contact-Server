@@ -17,11 +17,13 @@ Including another URLconf
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from contactContactapi.views import register_user, login_user, PostView
+from contactContactapi.views import register_user, login_user, PostView, HelpSectionPostView
 
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'posts', PostView, 'post')
+router.register(r'helpsectionposts', HelpSectionPostView, 'helpsectionpost')
+
 
 urlpatterns = [
     path('', include(router.urls)),
