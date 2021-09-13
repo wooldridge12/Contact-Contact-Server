@@ -1,4 +1,4 @@
-"""View module for handling requests about posts"""
+"""View module for handling requests about helpsectionposts"""
 from django.http import HttpResponseServerError
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -6,31 +6,35 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from contactContactapi.models import Post, ContactUser, Urgency
+from contactContactapi.models import HelpSectionPost, ContactUser, Urgency
 
-class PostView(ViewSet):
-    """ContactContact Post"""
+class HelpSectionPostView(ViewSet):
+    """ContactContact HelpSectionPost"""
 
     def list(self, request):
 
-        posts = Post.objects.all()
+        help_section_posts = HelpSectionPost.objects.all()
 
-        serializer = PostSerializer(
-            posts, many=True, context={'request': request})
+        serializer = HelpSectionPostSerializer(
+            help_section_posts, many=True, context={'request': request}
+        )
         return Response(serializer.data)
 
     def create(self, request):
 
         contact_user = ContactUser.objects.get(user=request.auth.user)
+        urg_button = Urgency.objects.get(pk=request.data["urg_button"])
 
-        post = Post()
-        post.content = request.data["content"]
-        post.contact_user = contact_user
-
+        helpsectionpost = HelpSectionPost()
+        helpsectionpost.contact_user = contact_user
+        helpsectionpost.urg_button = urg_button
+        helpsectionpost.content = request.data["content"]
+        helpsectionpost.phone_number = request.data["phone_number"]
+        helpsectionpost.is_helped = request.data["is_helped"]
 
         try:
-            post.save()
-            serializer = PostSerializer(post, context={'request': request})
+            helpsectionpost.save()
+            serializer = HelpSectionPostSerializer(helpsectionpost, context={'request': request})
             return Response(serializer.data)
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
@@ -52,7 +56,7 @@ class ContactUserSerializer(serializers.ModelSerializer):
         fields = ['user']
 
 
-class PostSerializer(serializers.ModelSerializer):
+class HelpSectionPostSerializer(serializers.ModelSerializer):
     """JSON serializer for posts
 
     Arguments:
@@ -62,7 +66,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         """HI"""
-        model = Post
-        fields = ('id', 'content','contact_user')
+        model = HelpSectionPost
+        fields = ('id', 'content','contact_user', 'urg_button', 'phone_number', 'is_helped' )
         depth = 1
         
