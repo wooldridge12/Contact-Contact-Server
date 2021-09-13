@@ -12,7 +12,7 @@
     },
     {
         "model": "contactContactapi.message",
-        "pk": 1,
+        "pk": 2,
         "fields": {
             "contact_user": 2,
             "battle_buddy": 1,
