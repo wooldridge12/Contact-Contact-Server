@@ -6,7 +6,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from contactContactapi.models import Post, ContactUser
+from contactContactapi.models import Post, ContactUser, Urgency
 
 class PostView(ViewSet):
     """ContactContact Post"""
@@ -26,6 +26,7 @@ class PostView(ViewSet):
         post = Post()
         post.content = request.data["content"]
         post.contact_user = contact_user
+
 
         try:
             post.save()
