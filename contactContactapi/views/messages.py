@@ -21,6 +21,26 @@ class MessageView(ViewSet):
         )
         return Response(serializer.data)
 
+    def create(self, request):
+
+        contact_user = ContactUser.objects.get(user=request.auth.user)
+        battle_buddy = BattleBuddy.objects.get(pk=request.data["battle_buddy"])
+        help_section_post = HelpSectionPost.objects.get(pk=request.data["help_section_post"])
+
+        message = Message()
+        message.contact_user = contact_user
+        message.battle_buddy = battle_buddy
+        message.help_section_post = help_section_post
+        message.message = request.data["message"]
+        message.created_on_date = request.data["created_on_date"]
+
+        try:
+            message.save()
+            serializer = MessageSerializer(message, context={'request': request})
+            return Response(serializer.data)
+        except ValidationError as ex:
+            return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class UserSerializer(serializers.ModelSerializer):
