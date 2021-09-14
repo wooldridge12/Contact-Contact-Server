@@ -69,5 +69,5 @@ class MessageSerializer(serializers.ModelSerializer):
         """"""
         model = Message
         fields = ('id', 'contact_user', 'battle_buddy', 'message', 'help_section_post', 'created_on_date' )
-        depth = 1
+        depth = 2
         
