@@ -3,3 +3,4 @@ from .posts import PostView
 from .helpsectionposts import HelpSectionPostView
 from .urgencies import UrgencyView
 from .messages import MessageView
+from .battlebuddies import BattleBuddyView

@@ -14,7 +14,7 @@ class MessageView(ViewSet):
 
     def list(self, request):
 
-        messages = Message.objects.all()
+        messages = Message.objects.filter(sender__user = request.auth.user)
 
         serializer = MessageSerializer(
             messages, many=True, context={'request': request}
@@ -32,12 +32,12 @@ class MessageView(ViewSet):
     def create(self, request):
 
         contact_user = ContactUser.objects.get(user=request.auth.user)
-        battle_buddy = BattleBuddy.objects.get(pk=request.data["battle_buddy"])
+        battle_buddy = ContactUser.objects.get(pk=request.data["battle_buddy"])
         help_section_post = HelpSectionPost.objects.get(pk=request.data["help_section_post"])
 
         message = Message()
-        message.contact_user = contact_user
-        message.battle_buddy = battle_buddy
+        message.sender = contact_user
+        message.reciever = battle_buddy
         message.help_section_post = help_section_post
         message.message = request.data["message"]
         message.created_on_date = request.data["created_on_date"]
@@ -76,6 +76,6 @@ class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         """"""
         model = Message
-        fields = ('id', 'contact_user', 'battle_buddy', 'message', 'help_section_post', 'created_on_date' )
+        fields = ('id', 'sender', 'reciever', 'message', 'help_section_post', 'created_on_date' )
         depth = 2
         
