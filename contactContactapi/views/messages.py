@@ -21,6 +21,14 @@ class MessageView(ViewSet):
         )
         return Response(serializer.data)
 
+    def retrieve(self, request, pk=None):
+        try:
+            message = Message.objects.get(pk=pk)
+            serializer = MessageSerializer(message, context={'request': request})
+            return Response(serializer.data)
+        except Exception as ex:
+            return HttpResponseServerError(ex)
+
     def create(self, request):
 
         contact_user = ContactUser.objects.get(user=request.auth.user)
