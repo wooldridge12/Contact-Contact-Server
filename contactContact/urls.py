@@ -17,7 +17,7 @@ Including another URLconf
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from contactContactapi.views import register_user, login_user, PostView, HelpSectionPostView, UrgencyView, MessageView
+from contactContactapi.views import register_user, login_user, PostView, HelpSectionPostView, UrgencyView, MessageView, BattleBuddyView
 
 
 router = routers.DefaultRouter(trailing_slash=False)
@@ -25,6 +25,7 @@ router.register(r'posts', PostView, 'post')
 router.register(r'helpsectionposts', HelpSectionPostView, 'helpsectionpost')
 router.register(r'urgencies', UrgencyView, 'urgency')
 router.register(r'messages', MessageView, 'message')
+router.register(r'battlebuddies', BattleBuddyView, 'battlebuddy')
 
 
 urlpatterns = [
