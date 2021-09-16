@@ -20,6 +20,14 @@ class HelpSectionPostView(ViewSet):
         )
         return Response(serializer.data)
 
+    def retrieve(self, request, pk=None):
+        try:
+            help_section_post = HelpSectionPost.objects.get(pk=pk)
+            serializer = HelpSectionPostSerializer(help_section_post, context={'request': request})
+            return Response(serializer.data)
+        except Exception as ex:
+            return HttpResponseServerError(ex)
+
     def create(self, request):
 
         contact_user = ContactUser.objects.get(user=request.auth.user)
