@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-from contactContactapi.models import ContactUser
+from contactContactapi.models import ContactUser, BattleBuddy
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -25,9 +25,11 @@ def login_user(request):
     # If authentication was successful, respond with their token
     if authenticated_user is not None:
         token = Token.objects.get(user=authenticated_user)
+        battle_buddy = BattleBuddy.objects.get(contact_user=authenticated_user.contactuser)
         data = {
             'valid': True,
-            'token': token.key
+            'token': token.key,
+            'active': battle_buddy.active
         }
         return Response(data)
     else:
@@ -54,13 +56,17 @@ def register_user(request):
         last_name=request.data['last_name']
     )
 
+
     # Now save the extra info in the contactContactapi table
     contact_user = ContactUser.objects.create(
         user=new_user
     )
 
+    battle_buddy = BattleBuddy.objects.create(contact_user=contact_user)
+
     # Use the REST Framework's token generator on the new user account
     token = Token.objects.create(user=contact_user.user)
     # Return the token to the client
-    data = { 'token': token.key }
+    data = { 'token': token.key,
+            'active': battle_buddy.active}
     return Response(data)

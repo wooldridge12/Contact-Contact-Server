@@ -25,9 +25,13 @@ class BattleBuddyView(ViewSet):
 
         contact_user = ContactUser.objects.get(user=request.auth.user)
 
-        battle_buddy = BattleBuddy()
-        battle_buddy.active = request.data["active"]
-        battle_buddy.contact_user = contact_user
+        battle_buddy = BattleBuddy.objects.get(contact_user=contact_user)
+
+        battle_buddy.active = True
+
+        # battle_buddy = BattleBuddy()
+        # battle_buddy.active = request.data["active"]
+        # battle_buddy.contact_user = contact_user
 
         try:
             battle_buddy.save()
