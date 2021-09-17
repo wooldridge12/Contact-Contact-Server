@@ -61,7 +61,7 @@ class ContactUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ContactUser
-        fields = ['user']
+        fields = ['user', 'id']
 
 
 class HelpSectionPostSerializer(serializers.ModelSerializer):
