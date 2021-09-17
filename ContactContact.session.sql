@@ -1,0 +1,1 @@
+DELETE FROM contactContactapi_battlebuddy WHERE id = 2 or id = 3
