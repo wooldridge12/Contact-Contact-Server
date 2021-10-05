@@ -35,6 +35,19 @@ class PostView(ViewSet):
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
 
+    def retrieve(self, request, pk=None):
+        """Handle GET requests for single post
+
+        Returns:
+            Response -- JSON serialized post instance
+        """
+        try:
+            post = Post.objects.get(pk=pk)
+            serializer = PostSerializer(post, context={'request': request})
+            return Response(serializer.data)
+        except Exception as ex:
+            return HttpResponseServerError(ex)
+
     def destroy(self, request, pk=None):
         """Destroy"""
         try:
