@@ -27,17 +27,19 @@
     </pre>
 
 2. Start Up a Virtual Enviroment
-    <pre>pipenv shell</pre>
+    <pre>
+    pipenv shell
+    </pre>
 
 3. Install dependencies
     <pre>
-		pipenv install
-		</pre>
+	pipenv install
+	</pre>
 
 4. Run server
     <pre>
-		python3 manage.py runserver
-		</pre>
+	python3 manage.py runserver
+	</pre>
 
 5. Next Steps will be in the Frontend repo (Contact-Contact-Client).
 	<pre>
